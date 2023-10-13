@@ -35,31 +35,31 @@ public class CalculatorModel implements CalculatorModelInterface {
 	}
 
 	@Override
-	public void push() {
+	public void push() { // méthode qui empilerle contenu de l’accumulateur sur la pile
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void pop() {
+	public void pop() { // méthode qui récupère le dernier opérande placé sur la pile
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void drop() {
+	public void drop() { // méthode qui élimine le dernier opérande placé sur la pile
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void swap() {
+	public void swap() { // méthode qui échange l’ordre des deux derniers opérandes
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void clear() {
+	public void clear() { // méthode qui vide le contenu de l’accumulateur accu
 		// TODO Auto-generated method stub
 		
 	}
