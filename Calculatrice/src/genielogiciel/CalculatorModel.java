@@ -3,6 +3,7 @@ import java.util.Stack;
 
 public class CalculatorModel implements CalculatorModelInterface {
 	public double accu;
+	public Stack<Double> pile;
 
 	@Override
 	public double add(double a, double b) { // méthode qui additionne deux nombres
@@ -36,31 +37,32 @@ public class CalculatorModel implements CalculatorModelInterface {
 
 	@Override
 	public void push() { // méthode qui empile le contenu de l’accumulateur sur la pile
-		// TODO Auto-generated method stub
-		
+		pile.push(accu);	
 	}
 
 	@Override
-	public void pop() { // méthode qui récupère le dernier opérande placé sur la pile
-		// TODO Auto-generated method stub
-		
+	public Double pop() { // méthode qui récupère le dernier opérande placé sur la pile
+		return pile.pop();	
 	}
 
 	@Override
 	public void drop() { // méthode qui élimine le dernier opérande placé sur la pile
-		// TODO Auto-generated method stub
+		pile.pop();
 		
 	}
 
 	@Override
 	public void swap() { // méthode qui échange l’ordre des deux derniers opérandes
-		// TODO Auto-generated method stub
-		
+		double a = pile.pop();
+		double b = pile.pop();
+		pile.push(a);
+		pile.push(b);		
 	}
 
 	@Override
 	public void clear() { // méthode qui vide le contenu de l’accumulateur accu
-		// TODO Auto-generated method stub
-		
+		while (!pile.empty()){
+			pile.pop();
+		}	
 	}
 }

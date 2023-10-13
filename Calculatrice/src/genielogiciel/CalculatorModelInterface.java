@@ -7,7 +7,7 @@ public interface CalculatorModelInterface {
 	public double divide(double a, double b);
 	public double opposite(double a);
 	public void push();
-	public void pop();
+	public Double pop();
 	public void drop();
 	public void swap();
 	public void clear();
