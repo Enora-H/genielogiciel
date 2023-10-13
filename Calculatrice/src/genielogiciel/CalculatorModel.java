@@ -35,7 +35,7 @@ public class CalculatorModel implements CalculatorModelInterface {
 	}
 
 	@Override
-	public void push() { // méthode qui empilerle contenu de l’accumulateur sur la pile
+	public void push() { // méthode qui empile le contenu de l’accumulateur sur la pile
 		// TODO Auto-generated method stub
 		
 	}
