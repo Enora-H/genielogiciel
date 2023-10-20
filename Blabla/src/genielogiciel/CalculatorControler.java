@@ -13,7 +13,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 
 	@Override
 	public Stack<Double> change(List<Double> stackData) {
-		Stack<Double> pile = new Stack<Double>;
+		Stack<Double> pile = new Stack<Double>();
 		pile.addAll(stackData);
 		return pile;
 	}
