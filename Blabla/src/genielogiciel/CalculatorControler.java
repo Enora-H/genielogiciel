@@ -7,14 +7,15 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	
 	@Override
 	public double change(String accu) {
-		// TODO Auto-generated method stub
-		return 0;
+		double convertedAccu = Double.parseDouble(accu);
+		return convertedAccu;
 	}
 
 	@Override
 	public Stack<Double> change(List<Double> stackData) {
-		// TODO Auto-generated method stub
-		return null;
+		Stack<Double> pile = new Stack<Double>;
+		pile.addAll(stackData);
+		return pile;
 	}
 
 }
