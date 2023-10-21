@@ -1,5 +1,7 @@
 package genielogiciel;
 
+// Interface implémentée par le model.
+
 public interface CalculatorModelInterface {
 	public double add(double a, double b);
 	public double substract(double a, double b);

@@ -1,5 +1,7 @@
 package genielogiciel;
 
+// Interface implémentée par le controler.
+
 public interface CalculatorControlerInterface {
 	
 	public double change(String accu);
