@@ -3,6 +3,8 @@ package genielogiciel;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+// important : faire la gestion des erreurs !!!!!!!
+
 public class Calculatricky extends Application {
 	
 	/**
