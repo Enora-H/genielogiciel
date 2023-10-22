@@ -9,6 +9,9 @@ import java.util.Stack;
 
 public class CalculatorControler implements CalculatorControlerInterface {
 	
+	private CalculatorModel model; //
+	private CalculatorGUI vue; //
+	
 	/**
      * Méthode qui convertit l'accumulateur entré comme chaîne de caractères en un double lisible
      * par le model.
