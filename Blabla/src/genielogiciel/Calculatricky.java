@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 // important : faire la gestion des erreurs !!!!!!!
+// 1. erreur si on entre pas un string convertible en nombre dans la liste
+// 2. erreur si on entre un opérateur qui n'en est pas un 
+// 3. autre type d'erreur ? réfléchir
 
 public class Calculatricky extends Application {
 	
