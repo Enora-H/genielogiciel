@@ -54,16 +54,30 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	    double resultat = 0.0; // on initialise le résultat 
 
 	 // chacun des cinq cas d'opérations : addition, soustraction, multiplication, division et opposition
-	    if ("additionner".equals(operation)) { 
-	    	resultat = model.add(a, b);
-	    } else if ("soustraire".equals(operation)) {
-	    	resultat = model.substract(a, b);
-	    } else if ("multiplier".equals(operation)) {
-	    	resultat = model.multiply(a, b);
-	    } else if ("diviser".equals(operation)) {
-	    	resultat = model.divide(a, b);
-	    } else if ("opposer".equals(operation)) {
-	    	resultat = model.opposite(a);
+	    switch (operation) {
+	    case "additionner":
+	    resultat = model.add(a, b);
+	    break;
+	    case "soustraire":
+	    resultat = model.substract(a, b);
+	    break;
+	    case "multiplier":
+	    resultat = model.multiply(a, b);
+	    break;
+	    case "diviser":
+	    if (b == 0.0) {
+	    // Ajouter de la gestion des erreurs : division par zéro. Faire afficher sur l'interface : gérer dans view.
+	    } else {
+	    resultat = model.divide(a, b);
+	    }
+	    break;
+	    case "opposer":
+	    resultat = model.opposite(a);
+	    break;
+	    default:
+	    // Handle unknown operation error
+	    // Ajouter de la gestion d'erreurs : cas où l'opérateur est inconnu
+	    break;
 	    }
 	    
 	    model.push(resultat); // on pousse l'accumulateur en haut de la pileS
