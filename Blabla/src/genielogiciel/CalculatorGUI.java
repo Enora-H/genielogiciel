@@ -1,12 +1,14 @@
 package genielogiciel;
 
 import java.util.List;
+import java.util.Stack;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import java.util.Stack;
 
 public class CalculatorGUI implements CalculatorGUIInterface {
 	public Stage primaryStage;
