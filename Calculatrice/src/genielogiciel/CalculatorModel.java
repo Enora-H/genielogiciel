@@ -11,6 +11,34 @@ public class CalculatorModel implements CalculatorModelInterface {
 								// un opérateur.
 
 	/**
+     * Getter de l'accumulateur
+     */
+	public double getAccu() {
+		return accu;
+	}
+	
+	/**
+     * Setter de l'accumulateur
+     */
+	public void setAccu(double accu) {
+		this.accu = accu;
+	}
+
+	/**
+     * Getter de la pile
+     */
+	public Stack<Double> getPile() {
+		return pile;
+	}
+	
+	/**
+     * Setter de la pile
+     */
+	public void setPile(Stack<Double> pile) {
+		this.pile = pile;
+	}
+	
+	/**
      * Méthode qui additionne deux nombres de type double et retourne le résultat.
      *
      * @param a  premier double à additionner
@@ -21,7 +49,7 @@ public class CalculatorModel implements CalculatorModelInterface {
 		double somme = a+b;
 		return somme;
 	}
-	
+
 	/**
      * Méthode qui fait la différence deux nombres de type double et retourne le résultat.
      *
