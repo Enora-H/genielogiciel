@@ -11,7 +11,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	
 	private CalculatorModel model; //
 	private CalculatorGUI vue; //
-	
+
 	/**
      * Méthode qui convertit l'accumulateur entré comme chaîne de caractères en un double lisible
      * par le model.
@@ -41,7 +41,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
      *
      * @param operation String qui détermine quel type d'opération est à appliquer
      */
-	private double faireOperation(String operation) { // pas encore sûre (on retourne le resultat ou pas?)
+	private double faireOperation(String operation) throws CustomException {// pas encore sûre (on retourne le resultat ou pas?)
 	    List<Double> liste = vue.getStackData(); // implémenter le getter dans la vue!!!!!
 	    model.setPile(change(liste));
 	    double a = model.pop(); // on prend le dernier élément de la pile
