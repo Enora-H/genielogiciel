@@ -18,14 +18,28 @@ import javafx.scene.control.Button;
 public class CalculatorGUI implements CalculatorGUIInterface {
 	public Stage primaryStage;
 	public Scene scene;
-	public String inputs; // faire une liste strings, mettre en private avec un getter
+	private List<String> inputs;
 	private ArrayList<Button> boutons = new ArrayList<Button>();
 	private CalculatorControler controller; 
 	private Text accu_display;
 	private Text result_display;
+	private String nombre;
 	
+	public List<String> getInputs() {
+		return inputs;
+	}
+
+
+	public void setInputs(List<String> inputs) {
+		this.inputs = inputs;
+	}
+
+
 	public CalculatorGUI(Stage primaryStage) {		
 		this.primaryStage = primaryStage;
+		inputs = new ArrayList<String>();
+		nombre = "";
+		
 		
 		
 		// creation grille boutons chiffres
@@ -33,8 +47,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		for (int i = 1; i<10; i++) {
 			Button btn = new Button(String.valueOf(i));
 			btn.setOnAction((event) -> {
-				  inputs += String.valueOf(btn.getText());
-				  //controller.update(String.valueOf(btn.getText()));
+				  nombre += btn.getText().toString();
 				});				
 			boutons.add(btn);
 		}
@@ -42,14 +55,14 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		Button btn0 = new Button();
 		btn0.setText("0");
 		btn0.setOnAction((event) -> {
-			  inputs += "0";
+			nombre += btn0.getText().toString();
 			});		
 		boutons.add(btn0);
 		
 		Button btn_virgule = new Button();
 		btn_virgule.setText(",");
 		btn_virgule.setOnAction((event) -> {
-			  inputs += ",";
+			nombre += "."; 
 			});	
 		boutons.add(btn_virgule);
 
@@ -57,7 +70,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		Button btn_signe = new Button();
 		btn_signe.setText("+/-");
 		btn_signe.setOnAction((event) -> {
-			  inputs += "+/-";
+			nombre = btn_signe.getText().toString() + nombre; // a revoir c'est pas vrai
 			});	
 		boutons.add(btn_signe);
 		
@@ -84,26 +97,49 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         Button btn_somme = new Button("+");
 		btn_somme.setOnAction((event) -> {
-			  inputs += "+";
+			  try {
+				controller.faireOperation("+");
+			} catch (CustomException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			});	
         
         Button btn_difference = new Button("-");
 		btn_difference.setOnAction((event) -> {
-			  inputs += "-";
+			try {
+				controller.faireOperation("-");
+			} catch (CustomException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			});	
         
         Button btn_produit = new Button("*");
 		btn_produit.setOnAction((event) -> {
-			  inputs += "*";
+			try {
+				controller.faireOperation("*");
+			} catch (CustomException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			});	
         
         Button btn_quotient = new Button("/");
 		btn_quotient.setOnAction((event) -> {
-			  inputs += "/";
+			try {
+				controller.faireOperation("/");
+			} catch (CustomException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			});	
+		
         Button btn_enter = new Button("<>");
 		btn_enter.setOnAction((event) -> {
-			  inputs += "e";
+			  inputs.add(nombre);
+			  nombre = "";
+			  System.out.println(inputs);
 			});	
         
         
