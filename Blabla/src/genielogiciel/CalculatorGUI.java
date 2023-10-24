@@ -34,7 +34,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 			Button btn = new Button(String.valueOf(i));
 			btn.setOnAction((event) -> {
 				  inputs += String.valueOf(btn.getText());
-				  controller.update(String.valueOf(btn.getText()));
+				  //controller.update(String.valueOf(btn.getText()));
 				});				
 			boutons.add(btn);
 		}
