@@ -56,9 +56,15 @@ public class CalculatorControler implements CalculatorControlerInterface {
      *
      * @param operation String qui détermine quel type d'opération est à appliquer
      */
+<<<<<<< HEAD
 	private List<String> faireOperation(String operation) throws CustomException {
 	    List<String> liste = vue.getStackData(); // implémenter le getter dans la vue!!!!!
 	    model.setPile(changeStr(liste)); // implémenter le setter dans la vue !!!!!
+=======
+	public double faireOperation(String operation) throws CustomException {// pas encore sûre (on retourne le resultat ou pas?)
+	    List<Double> liste = vue.getStackData(); // implémenter le getter dans la vue!!!!!
+	    model.setPile(change(liste));
+>>>>>>> refs/heads/feature_interface_3
 	    double a = model.pop(); // on prend le dernier élément de la pile
 	    double b = 0.0; // on initialise b à zéro pour ne pas perdre une information de la pile au cas où on ne l'utilise pas
 
