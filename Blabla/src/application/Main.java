@@ -26,8 +26,9 @@ public class Main extends Application {
 				
 	        CalculatorModel model = new CalculatorModel();
 	        CalculatorGUI view = new CalculatorGUI(primaryStage);
-	        //CalculatorControler controller = new CalculatorControler(model, view);
-
+	        CalculatorControler controller = new CalculatorControler(model, view);
+	        view.addController(controller);
+	        
 	        primaryStage.setTitle("Calculatricky");
 
 			
