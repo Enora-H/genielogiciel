@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 public class CalculatorGUI implements CalculatorGUIInterface {
 	public Stage primaryStage;
 	public Scene scene;
-	public String inputs;
+	public String inputs; // faire une liste strings, mettre en private avec un getter
 	private ArrayList<Button> boutons = new ArrayList<Button>();
 	private CalculatorControler controller; 
 	private Text accu_display;
