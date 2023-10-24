@@ -11,18 +11,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	
 	private CalculatorModel model; //
 	private CalculatorGUI vue; //
-<<<<<<< HEAD
-	
-	// contructeur
-	
-	public CalculatorControler(CalculatorModel model, CalculatorGUI vue) {
-		this.model = model;
-		this.vue = vue;
-	}
-	
-=======
 
->>>>>>> refs/heads/master2
 	/**
      * Méthode qui convertit l'accumulateur entré comme chaîne de caractères en un double lisible
      * par le model.
@@ -52,41 +41,40 @@ public class CalculatorControler implements CalculatorControlerInterface {
      *
      * @param operation String qui détermine quel type d'opération est à appliquer
      */
-<<<<<<< HEAD
-	private double faireOperation(String operation) { // pas encore sûre (on retourne le resultat ou pas?)
-=======
 	private double faireOperation(String operation) throws CustomException {// pas encore sûre (on retourne le resultat ou pas?)
->>>>>>> refs/heads/master2
 	    List<Double> liste = vue.getStackData(); // implémenter le getter dans la vue!!!!!
 	    model.setPile(change(liste));
 	    double a = model.pop(); // on prend le dernier élément de la pile
 	    double b = 0.0; // on initialise b à zéro pour ne pas perdre une information de la pile au cas où on ne l'utilise pas
 
-	    if (!"opposer".equals(operation)) { // cas où on n'oppose pas : on initialise b à la bonne valeur
-	        b = model.pop();
+	    if (!"+/-".equals(operation)) { // cas où on n'oppose pas : on vérifie s'il y a assez d'opérandes et on initialise b à la bonne valeur
+	    	if (model.getPile().isEmpty()) {
+                throw new CustomException("Pas assez d'opérandes sur la pile"); // il faut ajouter des "try-catch" dans la vue
+            }
+	    	b = model.pop();
 	    }
 
 	    double resultat = 0.0; // on initialise le résultat 
 
 	 // chacun des cinq cas d'opérations : addition, soustraction, multiplication, division et opposition
 	    switch (operation) {
-	    case "additionner":
+	    case "+":
 	    resultat = model.add(a, b);
 	    break;
-	    case "soustraire":
+	    case "-":
 	    resultat = model.substract(a, b);
 	    break;
-	    case "multiplier":
+	    case "*":
 	    resultat = model.multiply(a, b);
 	    break;
-	    case "diviser":
+	    case "/":
 	    if (b == 0.0) {
 	    	throw new CustomException("Division par zéro impossible"); // il faut ajouter des "try-catch" dans la vue
 	    } else {
 	    resultat = model.divide(a, b);
 	    }
 	    break;
-	    case "opposer":
+	    case "+/-":
 	    resultat = model.opposite(a);
 	    break;
 	    default:
@@ -96,35 +84,6 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	    
 	    model.push(resultat); // on pousse l'accumulateur en haut de la pile
 	    return resultat;
-	}
-
-	
-	/**
-	 * Methode pour mettre a jour les donnees du controleur quand un bouton 
-	 * est clique dans l'interface
-	 * @param string
-	 */
-	public void update(String string) {
-
-		
-	}
-
-	@Override
-	public genielogiciel.Stack<Double> change(genielogiciel.List<Double> stackData) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public genielogiciel.Stack<Double> change(genielogiciel.List<Double> stackData) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public genielogiciel.Stack<Double> change(genielogiciel.List<Double> stackData) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	
