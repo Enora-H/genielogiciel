@@ -11,6 +11,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	
 	private CalculatorModel model; //
 	private CalculatorGUI vue; //
+<<<<<<< HEAD
 	
 	// contructeur
 	
@@ -19,6 +20,9 @@ public class CalculatorControler implements CalculatorControlerInterface {
 		this.vue = vue;
 	}
 	
+=======
+
+>>>>>>> refs/heads/master2
 	/**
      * Méthode qui convertit l'accumulateur entré comme chaîne de caractères en un double lisible
      * par le model.
@@ -48,7 +52,11 @@ public class CalculatorControler implements CalculatorControlerInterface {
      *
      * @param operation String qui détermine quel type d'opération est à appliquer
      */
+<<<<<<< HEAD
 	private double faireOperation(String operation) { // pas encore sûre (on retourne le resultat ou pas?)
+=======
+	private double faireOperation(String operation) throws CustomException {// pas encore sûre (on retourne le resultat ou pas?)
+>>>>>>> refs/heads/master2
 	    List<Double> liste = vue.getStackData(); // implémenter le getter dans la vue!!!!!
 	    model.setPile(change(liste));
 	    double a = model.pop(); // on prend le dernier élément de la pile
@@ -73,7 +81,7 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	    break;
 	    case "diviser":
 	    if (b == 0.0) {
-	    // Ajouter de la gestion des erreurs : division par zéro. Faire afficher sur l'interface : gérer dans view.
+	    	throw new CustomException("Division par zéro impossible"); // il faut ajouter des "try-catch" dans la vue
 	    } else {
 	    resultat = model.divide(a, b);
 	    }
@@ -82,12 +90,11 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	    resultat = model.opposite(a);
 	    break;
 	    default:
-	    // Handle unknown operation error
-	    // Ajouter de la gestion d'erreurs : cas où l'opérateur est inconnu
+	    	throw new CustomException("Opérateur inconnu"); // il faut ajouter des "try-catch" dans la vue
 	    break;
 	    }
 	    
-	    model.push(resultat); // on pousse l'accumulateur en haut de la pileS
+	    model.push(resultat); // on pousse l'accumulateur en haut de la pile
 	    return resultat;
 	}
 
