@@ -24,10 +24,10 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	private Text accu_display;
 	private Text result_display;
 	private String nombre;
-    private Text display0 = new Text("0");
-    private Text display1 = new Text("1");
-    private Text display2 = new Text("2");
-    private Text display3 = new Text("3");
+    private Text display0 = new Text("");
+    private Text display1 = new Text("-");
+    private Text display2 = new Text("-");
+    private Text display3 = new Text("-");
 	
 	public List<String> getInputs() {
 		return inputs;
@@ -112,6 +112,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_somme.setOnAction((event) -> {
 			  try {
 				controller.faireOperation("+");
+				affiche();
 			} catch (CustomException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -122,6 +123,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_difference.setOnAction((event) -> {
 			try {
 				controller.faireOperation("-");
+				affiche();
 			} catch (CustomException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,6 +134,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_produit.setOnAction((event) -> {
 			try {
 				controller.faireOperation("*");
+				affiche();
 			} catch (CustomException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -142,6 +145,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_quotient.setOnAction((event) -> {
 			try {
 				controller.faireOperation("/");
+				affiche();
 			} catch (CustomException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -154,10 +158,24 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 			  nombre = "";
 			  affiche();
 			});	
+		
+        Button btn_effacer = new Button("Effacer");
+		btn_effacer.setOnAction((event) -> {
+			if (nombre != "") {
+				nombre = nombre.substring(0, nombre.length()-1); 
+			}
+			else {
+				if (inputs.size() > 0) {
+					nombre = inputs.get(inputs.size()-1);
+					inputs.remove(inputs.size()-1);
+				}
+			}
+			affiche();
+		});	
         
         
         VBox layout_operations = new VBox();
-        layout_operations.getChildren().addAll(btn_somme, btn_difference, btn_produit, btn_quotient, btn_enter);
+        layout_operations.getChildren().addAll(btn_somme, btn_difference, btn_produit, btn_quotient, btn_enter, btn_effacer);
         
         
         // Conception affichage calculs
@@ -169,7 +187,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         VBox layout_affichage = new VBox();
         
-        layout_affichage.getChildren().addAll(display0, display1, display2, display3);
+        layout_affichage.getChildren().addAll(display3, display2, display1, display0);
         
         
         
@@ -183,6 +201,10 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         scene = new Scene(layout, 300, 250);
         
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume(); // Empêche la fermeture automatique de la fenêtre
+            primaryStage.close(); // Ferme la fenêtre manuellement
+        });
         
         primaryStage.setScene(scene);
         primaryStage.setHeight(500);
@@ -194,7 +216,25 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	
 	@Override
 	public void affiche() {
-		display0.setText(nombre);		
+		display0.setText(nombre);
+		if (inputs.size() > 0) {
+			display1.setText(inputs.get(inputs.size() - 1));
+		}
+		else {
+			display1.setText("-");
+		}
+		if (inputs.size() > 1) {
+			display2.setText(inputs.get(inputs.size() - 2));
+		}
+		else {
+			display2.setText("-");
+		}
+		if (inputs.size() > 2) {
+			display3.setText(inputs.get(inputs.size() - 3));
+		}
+		else {
+			display3.setText("-");
+		}
 	}
 
 	@Override
