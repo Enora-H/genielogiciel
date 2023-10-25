@@ -7,10 +7,13 @@ import java.util.Stack;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -106,19 +109,26 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         VBox layout_affichage = new VBox();
         
-        layout_affichage.getChildren().addAll(display3, display2, display1, display0);
+        HBox hdisplay0 = createDisplayHBox(display0);
+        HBox hdisplay1 = createDisplayHBox(display1);
+        HBox hdisplay2 = createDisplayHBox(display2);
+        HBox hdisplay3 = createDisplayHBox(display3);
         
+        layout_affichage.getChildren().addAll(hdisplay3, hdisplay2, hdisplay1, hdisplay0);
         
         
         // Grille finale
         
-        GridPane layout = new GridPane();
-        layout.add(layout_affichage, 0, 0);
-        layout.add(layout_chiffres, 0, 1);
-        layout.add(layout_operations, 1, 1);
+        BorderPane layout = new BorderPane();
+        layout.setTop(layout_affichage);
+        layout.setLeft(layout_chiffres);
+        layout.setRight(layout_operations);
         
+        layout.setMargin(layout_chiffres, new Insets(5, 0, 20, 20)); // insets : haut, droite, bas, gauche
+        layout.setMargin(layout_operations, new Insets(0, 20, 20, 0));
+        layout.setMargin(layout_affichage, new Insets(20, 20, 20, 20));
         
-        scene = new Scene(layout, 300, 250);
+        scene = new Scene(layout);
         
         primaryStage.setOnCloseRequest(e -> {
             e.consume(); // Empêche la fermeture automatique de la fenêtre
@@ -126,8 +136,9 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         });
         
         primaryStage.setScene(scene);
-        primaryStage.setHeight(500);
-        primaryStage.setWidth(500);
+        primaryStage.setHeight(450);
+        primaryStage.setWidth(300);
+        primaryStage.setResizable(false);
         primaryStage.show();
         
 	}
@@ -213,6 +224,18 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		break;	
 		}
 	}
+	
+	
+	
+    private HBox createDisplayHBox(Text display) {
+        HBox displayBox = new HBox();
+        displayBox.setPrefSize(260, 40);
+        Pane espace = new Pane();
+        espace.setPrefSize(250,  40);
+        displayBox.getChildren().addAll(espace, display);        
+        //displayBox.setStyle("-fx-border-color: black; -fx-border-width: 2px; -fx-padding: 10px;");
+        return displayBox;
+    }
 	
 	
 	@Override

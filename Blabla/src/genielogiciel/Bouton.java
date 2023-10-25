@@ -14,6 +14,7 @@ public class Bouton {
 			btn.setOnAction((event) -> {
 				gui.boutonChiffreEvent(label);
 				});
+			btn.setPrefSize(50, 50);
 	        return btn;
 	    }
 
@@ -22,6 +23,7 @@ public class Bouton {
 			btn.setOnAction((event) -> {
 				gui.boutonOperationEvent(label);
 				});
+			btn.setPrefSize(70, 35);
 	        return btn;
 	    }
 
@@ -30,6 +32,12 @@ public class Bouton {
 			btn.setOnAction((event) -> {
 				gui.boutonAutreEvent(label);
 				});
+			if (label == "+/-") {
+				btn.setPrefSize(50, 50);
+			}
+			else {
+				btn.setPrefSize(70, 35);
+			}
 	        return btn;
 	    }
 	}
