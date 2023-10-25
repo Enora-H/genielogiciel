@@ -24,6 +24,10 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	private Text accu_display;
 	private Text result_display;
 	private String nombre;
+    private Text display0 = new Text("0");
+    private Text display1 = new Text("1");
+    private Text display2 = new Text("2");
+    private Text display3 = new Text("3");
 	
 	public List<String> getInputs() {
 		return inputs;
@@ -48,6 +52,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 			Button btn = new Button(String.valueOf(i));
 			btn.setOnAction((event) -> {
 				  nombre += btn.getText().toString();
+				  affiche();
 				});				
 			boutons.add(btn);
 		}
@@ -56,6 +61,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn0.setText("0");
 		btn0.setOnAction((event) -> {
 			nombre += btn0.getText().toString();
+			affiche();
 			});		
 		boutons.add(btn0);
 		
@@ -63,6 +69,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_virgule.setText(",");
 		btn_virgule.setOnAction((event) -> {
 			nombre += "."; 
+			affiche();
 			});	
 		boutons.add(btn_virgule);
 
@@ -70,8 +77,14 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		Button btn_signe = new Button();
 		btn_signe.setText("+/-");
 		btn_signe.setOnAction((event) -> {
-			nombre = btn_signe.getText().toString() + nombre; // a revoir c'est pas vrai
-			});	
+			if (nombre == "" || nombre.charAt(0) != '-') {
+				nombre = "-" + nombre;
+			}
+			else {
+				nombre = nombre.substring(1);
+			}
+			affiche();
+		});	
 		boutons.add(btn_signe);
 		
 		
@@ -139,7 +152,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		btn_enter.setOnAction((event) -> {
 			  inputs.add(nombre);
 			  nombre = "";
-			  System.out.println(inputs);
+			  affiche();
 			});	
         
         
@@ -152,9 +165,11 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         accu_display = new Text("accu");
         result_display = new Text("resultat");
         
+
+        
         VBox layout_affichage = new VBox();
         
-        layout_affichage.getChildren().addAll(accu_display, result_display);
+        layout_affichage.getChildren().addAll(display0, display1, display2, display3);
         
         
         
@@ -179,8 +194,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	
 	@Override
 	public void affiche() {
-		// TODO Auto-generated method stub
-		
+		display0.setText(nombre);		
 	}
 
 	@Override
