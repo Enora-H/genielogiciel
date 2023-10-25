@@ -21,13 +21,11 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	private List<String> inputs;
 	private ArrayList<Button> boutons = new ArrayList<Button>();
 	private CalculatorControler controller; 
-	private Text accu_display;
-	private Text result_display;
 	private String nombre;
-    private Text display0 = new Text("");
-    private Text display1 = new Text("-");
-    private Text display2 = new Text("-");
-    private Text display3 = new Text("-");
+    private Text display0;
+    private Text display1;
+    private Text display2;
+    private Text display3;
 	
 	public List<String> getInputs() {
 		return inputs;
@@ -43,8 +41,10 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		this.primaryStage = primaryStage;
 		inputs = new ArrayList<String>();
 		nombre = "";
-		
-		
+	    display0 = new Text("");
+	    display1 = new Text("-");
+	    display2 = new Text("-");
+	    display3 = new Text("-");
 		
 		// creation grille boutons chiffres
 		
@@ -180,10 +180,6 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         // Conception affichage calculs
         
-        accu_display = new Text("accu");
-        result_display = new Text("resultat");
-        
-
         
         VBox layout_affichage = new VBox();
         
@@ -259,12 +255,4 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		this.controller = controller;
 	}
 	
-	
-	
-	
-	public void update(String resultat, String accu){
-		accu_display.setText(accu);
-		result_display.setText(resultat);
-	}
-
 }
