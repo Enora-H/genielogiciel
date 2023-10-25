@@ -5,6 +5,23 @@ public class CalculatorModel implements CalculatorModelInterface {
 	public double accu;
 	public Stack<Double> pile;
 
+	
+	public double getAccu() {
+		return accu;
+	}
+
+	public void setAccu(double accu) {
+		this.accu = accu;
+	}
+
+	public Stack<Double> getPile() {
+		return pile;
+	}
+
+	public void setPile(Stack<Double> pile) {
+		this.pile = pile;
+	}
+
 	@Override
 	public double add(double a, double b) { // méthode qui additionne deux nombres
 		double somme = a+b;
