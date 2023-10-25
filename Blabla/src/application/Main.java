@@ -24,6 +24,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,450,300);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				
+			
 	        CalculatorModel model = new CalculatorModel();
 	        CalculatorGUI view = new CalculatorGUI(primaryStage);
 	        CalculatorControler controller = new CalculatorControler(model, view);

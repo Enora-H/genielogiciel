@@ -233,7 +233,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         Pane espace = new Pane();
         espace.setPrefSize(250,  40);
         displayBox.getChildren().addAll(espace, display);        
-        //displayBox.setStyle("-fx-border-color: black; -fx-border-width: 2px; -fx-padding: 10px;");
+        displayBox.setStyle("-fx-border-color: grey; -fx-border-width: 2px; -fx-background-color: lightgrey; -fx-font-family: \"System\";-fx-font-size: 14px;");
         return displayBox;
     }
 	
