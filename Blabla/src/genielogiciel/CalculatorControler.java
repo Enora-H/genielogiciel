@@ -9,6 +9,12 @@ import java.util.Stack;
 
 public class CalculatorControler implements CalculatorControlerInterface {
 	
+	public CalculatorControler(CalculatorModel model, CalculatorGUI vue) {
+		super();
+		this.model = model;
+		this.vue = vue;
+	}
+
 	private CalculatorModel model; //
 	private CalculatorGUI vue; //
 
