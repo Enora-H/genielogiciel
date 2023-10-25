@@ -49,42 +49,18 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		// creation grille boutons chiffres
 		
 		for (int i = 1; i<10; i++) {
-			Button btn = new Button(String.valueOf(i));
-			btn.setOnAction((event) -> {
-				  nombre += btn.getText().toString();
-				  affiche();
-				});				
+			Button btn = Bouton.createBoutonChiffre(String.valueOf(i), this);			
 			boutons.add(btn);
 		}
 		
-		Button btn0 = new Button();
-		btn0.setText("0");
-		btn0.setOnAction((event) -> {
-			nombre += btn0.getText().toString();
-			affiche();
-			});		
+		Button btn0 = Bouton.createBoutonChiffre("0", this);
 		boutons.add(btn0);
 		
-		Button btn_virgule = new Button();
-		btn_virgule.setText(",");
-		btn_virgule.setOnAction((event) -> {
-			nombre += "."; 
-			affiche();
-			});	
+		Button btn_virgule = Bouton.createBoutonChiffre(".", this);
 		boutons.add(btn_virgule);
 
 		
-		Button btn_signe = new Button();
-		btn_signe.setText("+/-");
-		btn_signe.setOnAction((event) -> {
-			if (nombre.isEmpty() || nombre.charAt(0) != '-') {
-				nombre = "-" + nombre;
-			}
-			else {
-				nombre = nombre.substring(1);
-			}
-			affiche();
-		});	
+		Button btn_signe = Bouton.createBoutonAutre("+/-", this);	
 		boutons.add(btn_signe);
 		
 		
@@ -108,76 +84,21 @@ public class CalculatorGUI implements CalculatorGUIInterface {
         
         // Conception Operations
         
-        Button btn_somme = new Button("+");
-		btn_somme.setOnAction((event) -> {
-			  try {
-				controller.faireOperation("+");
-				affiche();
-			} catch (CustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			});	
+        Button btn_somme = Bouton.createBoutonOperation("+", this);
         
-        Button btn_difference = new Button("-");
-		btn_difference.setOnAction((event) -> {
-			try {
-				controller.faireOperation("-");
-				affiche();
-			} catch (CustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			});	
+        Button btn_difference = Bouton.createBoutonOperation("-", this);
         
-        Button btn_produit = new Button("*");
-		btn_produit.setOnAction((event) -> {
-			try {
-				controller.faireOperation("*");
-				affiche();
-			} catch (CustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			});	
+        Button btn_produit = Bouton.createBoutonOperation("*", this);
         
-        Button btn_quotient = new Button("/");
-		btn_quotient.setOnAction((event) -> {
-			try {
-				controller.faireOperation("/");
-				affiche();
-			} catch (CustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			});	
+        Button btn_quotient = Bouton.createBoutonOperation("/", this);
 		
-        Button btn_enter = new Button("<>");
-		btn_enter.setOnAction((event) -> {
-			if (!nombre.isEmpty()) {
-				inputs.add(nombre);
-				nombre = "";
-				affiche();
-			}
-		});	
+        Button btn_enter = Bouton.createBoutonAutre("<>",this);
 		
-        Button btn_effacer = new Button("Effacer");
-		btn_effacer.setOnAction((event) -> {
-			if (!nombre.isEmpty()) {
-				nombre = nombre.substring(0, nombre.length()-1); 
-			}
-			else {
-				if (!inputs.isEmpty()) {
-					nombre = inputs.get(inputs.size()-1);
-					inputs.remove(inputs.size()-1);
-				}
-			}
-			affiche();
-		});	
+        Button btn_effacer = Bouton.createBoutonAutre("Effacer", this);
         
         
         VBox layout_operations = new VBox();
-        layout_operations.getChildren().addAll(btn_somme, btn_difference, btn_produit, btn_quotient, btn_enter, btn_effacer);
+        layout_operations.getChildren().addAll(btn_effacer, btn_somme, btn_difference, btn_produit, btn_quotient, btn_enter);
         
         
         // Conception affichage calculs
@@ -241,6 +162,59 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	            break;
 	    }
 	}
+
+	public void boutonChiffreEvent(String chiffre) {
+		nombre += chiffre;
+		affiche();
+	}
+		
+
+	public void boutonOperationEvent(String operande) {
+		try {
+			controller.faireOperation(operande);
+			affiche();
+		} catch (CustomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void boutonAutreEvent(String instruction) {
+		switch(instruction){
+		case "Effacer":
+			if (!nombre.isEmpty()) {
+				nombre = nombre.substring(0, nombre.length()-1); 
+			}
+			else {
+				if (!inputs.isEmpty()) {
+					nombre = inputs.get(inputs.size()-1);
+					inputs.remove(inputs.size()-1);
+				}
+			}
+			affiche();
+		break;
+		case "+/-":
+			if (nombre.isEmpty() || nombre.charAt(0) != '-') {
+				nombre = "-" + nombre;
+			}
+			else {
+				nombre = nombre.substring(1);
+			}
+			affiche();
+		break;	
+			
+		case "<>" : 
+			if (!nombre.isEmpty()) {
+				inputs.add(nombre);
+				nombre = "";
+				affiche();
+			}
+		break;	
+		}
+	}
+	
+	
 	@Override
 	public double change(String accu) {
 		// TODO Auto-generated method stub
