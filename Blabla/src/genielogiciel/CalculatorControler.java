@@ -103,7 +103,6 @@ public class CalculatorControler implements CalculatorControlerInterface {
 	    break;
 	    default:
 	    	throw new CustomException("Opérateur inconnu"); // il faut ajouter des "try-catch" dans la vue
-	    break;
 	    }
 	    
 	    model.push(resultat); // on pousse l'accumulateur en haut de la pile
