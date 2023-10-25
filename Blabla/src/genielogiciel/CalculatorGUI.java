@@ -161,11 +161,11 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		
         Button btn_effacer = new Button("Effacer");
 		btn_effacer.setOnAction((event) -> {
-			if (nombre != "") {
+			if (!nombre.isEmpty()) {
 				nombre = nombre.substring(0, nombre.length()-1); 
 			}
 			else {
-				if (inputs.size() > 0) {
+				if (!inputs.isEmpty()) {
 					nombre = inputs.get(inputs.size()-1);
 					inputs.remove(inputs.size()-1);
 				}
@@ -216,27 +216,33 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	
 	@Override
 	public void affiche() {
-		display0.setText(nombre);
-		if (inputs.size() > 0) {
-			display1.setText(inputs.get(inputs.size() - 1));
-		}
-		else {
-			display1.setText("-");
-		}
-		if (inputs.size() > 1) {
-			display2.setText(inputs.get(inputs.size() - 2));
-		}
-		else {
-			display2.setText("-");
-		}
-		if (inputs.size() > 2) {
-			display3.setText(inputs.get(inputs.size() - 3));
-		}
-		else {
-			display3.setText("-");
-		}
+	    display0.setText(nombre);
+	    
+	    for (int i = 1; i <= 3; i++) {
+	        if (inputs.size() >= i) {
+	            setDisplay(i, inputs.get(inputs.size() - i));
+	        } else {
+	            setDisplay(i, "-");
+	        }
+	    }
 	}
 
+	// Méthode utilitaire pour mettre à jour les labels display1, display2, display3
+	private void setDisplay(int displayNumber, String value) {
+	    switch (displayNumber) {
+	        case 1:
+	            display1.setText(value);
+	            break;
+	        case 2:
+	            display2.setText(value);
+	            break;
+	        case 3:
+	            display3.setText(value);
+	            break;
+	        default:
+	            break;
+	    }
+	}
 	@Override
 	public double change(String accu) {
 		// TODO Auto-generated method stub
