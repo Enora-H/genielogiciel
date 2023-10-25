@@ -42,9 +42,9 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		inputs = new ArrayList<String>();
 		nombre = "";
 	    display0 = new Text("");
-	    display1 = new Text("-");
-	    display2 = new Text("-");
-	    display3 = new Text("-");
+	    display1 = new Text("");
+	    display2 = new Text("");
+	    display3 = new Text("");
 		
 		// creation grille boutons chiffres
 		
@@ -77,7 +77,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		Button btn_signe = new Button();
 		btn_signe.setText("+/-");
 		btn_signe.setOnAction((event) -> {
-			if (nombre == "" || nombre.charAt(0) != '-') {
+			if (nombre.isEmpty() || nombre.charAt(0) != '-') {
 				nombre = "-" + nombre;
 			}
 			else {
@@ -154,10 +154,12 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 		
         Button btn_enter = new Button("<>");
 		btn_enter.setOnAction((event) -> {
-			  inputs.add(nombre);
-			  nombre = "";
-			  affiche();
-			});	
+			if (!nombre.isEmpty()) {
+				inputs.add(nombre);
+				nombre = "";
+				affiche();
+			}
+		});	
 		
         Button btn_effacer = new Button("Effacer");
 		btn_effacer.setOnAction((event) -> {
@@ -218,7 +220,7 @@ public class CalculatorGUI implements CalculatorGUIInterface {
 	        if (inputs.size() >= i) {
 	            setDisplay(i, inputs.get(inputs.size() - i));
 	        } else {
-	            setDisplay(i, "-");
+	            setDisplay(i, "");
 	        }
 	    }
 	}
